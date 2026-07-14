@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jacket Collection</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f8f8f8;
+            font-family: Arial, sans-serif;
+        }
+
+        .main-container {
+            width: 90%;
+            margin: 40px auto;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .jacket-card {
+            background: #fafafa;
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .jacket-card:hover {
+            transform: translateY(-8px);
+            background: #f2f2f2;
+        }
+
+        .jacket-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .jacket-card h3 {
+            color: #333;
+            margin-top: 15px;
+        }
+
+        .jacket-card p {
+            margin: 8px 0 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .loading,
+        .error {
+            grid-column: 1 / -1;
+            text-align: center;
+            color: #666;
+            font-size: 18px;
+            padding: 20px 0;
+        }
+
+    </style>
+</head>
+
+<body>
+
+        <div class="main-container" id="productGrid">
+                <div class="loading">Loading products...</div>
+        </div>
+
+</body>
+</html>
+
+<script>
+    const api = "https://dummyjson.com/products";
+    const productGrid = document.getElementById("productGrid");
+
+    async function loadProducts() {
+        try {
+            const response = await fetch(api);
+            const data = await response.json();
+
+            productGrid.innerHTML = data.products
+                .map(function (product) {
+                    return `
+                        <div class="jacket-card">
+                            <img src="${product.thumbnail}" alt="${product.title}">
+                            <h2>${product.title}</h2>
+                            <h3>${product.brand}</h3>
+                            <p>$${product.price}</p>
+                            <img src = "${product.images[0]}" alt="${product.title}">
+                            <h3>${product.title}</h3>
+                            <h3>${product.brand}</h3>
+                            <button>Added to Cart</button>
+                        </div>
+                    `;
+                })
+                .join("");
+        } catch (error) {
+            productGrid.innerHTML = '<div class="error">Unable to load products.</div>';
+            console.error(error);
+        }
+    }
+
+    loadProducts();
+</script>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Registration</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f4f4f4;
+    padding:30px;
+}
+
+.container{
+    width:900px;
+    margin:auto;
+}
+
+.form-box{
+    width:600px;
+    border:2px solid #aaa;
+    padding:30px;
+    background:white;
+}
+
+.form-group{
+    margin:18px 0;
+}
+
+label{
+    display:inline-block;
+    width:90px;
+    font-size:24px;
+}
+
+input{
+    width:320px;
+    padding:8px;
+    font-size:20px;
+}
+
+button{
+    display:block;
+    margin:25px auto 0;
+    width:170px;
+    height:60px;
+    font-size:28px;
+    cursor:pointer;
+}
+
+h1{
+    margin:35px 0 20px;
+    font-size:50px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+}
+
+table,th,td{
+    border:2px solid gray;
+}
+
+th,td{
+    padding:10px;
+    text-align:center;
+    font-size:25px;
+}
+
+th{
+    background:#efefef;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<div class="form-box">
+
+<div class="form-group">
+<label>Name:</label>
+<input type="text" id="name" placeholder="Enter Name">
+</div>
+
+<div class="form-group">
+<label>Email:</label>
+<input type="email" id="email" placeholder="Enter Email">
+</div>
+
+<div class="form-group">
+<label>Age:</label>
+<input type="number" id="age" placeholder="Enter Age">
+</div>
+
+<button onclick="addStudent()">Submit</button>
+
+</div>
+
+<h1>Students Data</h1>
+
+<table id="studentTable">
+
+<tr>
+<th>Name</th>
+<th>Email</th>
+<th>Age</th>
+</tr>
+
+</table>
+
+</div>
+
+<script>
+
+function addStudent(){
+
+    let name=document.getElementById("name").value.trim();
+    let email=document.getElementById("email").value.trim();
+    let age=document.getElementById("age").value.trim();
+
+    if(name=="" || email=="" || age==""){
+        alert("Please fill all fields.");
+        return;
+    }
+
+    let table=document.getElementById("studentTable");
+
+    let row=table.insertRow();
+
+    row.insertCell(0).innerHTML=name;
+    row.insertCell(1).innerHTML=email;
+    row.insertCell(2).innerHTML=age;
+
+    document.getElementById("name").value="";
+    document.getElementById("email").value="";
+    document.getElementById("age").value="";
+}
+
+</script>
+
+</body>
+</html>
