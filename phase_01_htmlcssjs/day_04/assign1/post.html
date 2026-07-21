@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+        }
+        img{
+            height: 300px;
+            width: 250px;
+
+        }
+        .btn{
+            display: flex;
+            gap: 20px;
+        }
+        button{
+            font-size: xx-large;
+            width: 100px;
+        }
+        button:hover{
+            cursor: pointer;
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <img src="https://w0.peakpx.com/wallpaper/518/289/HD-wallpaper-shahrukh-khan-srk-smile-srk-smile.jpg" alt="">
+        <h3>King Khan</h3>
+        <div class="btn">
+            <button id="likeBtn">👍</button>
+            <h3 >Likes: <span id="likeCount">0</span></h3>
+        </div>
+        <div class="btn">
+            <button id="dislikeBtn">👎</button>
+            <h3>Dislikes:0</h3>   
+        </div>  
+    </div>
+</body>
+</html>
+<script>
+    var lbtn=document.getElementById("likeBtn")
+    //  <button id="likeBtn">👍</button>
+    // console.log(lbtn)
+     var count=0
+    lbtn.addEventListener("click",function(){
+       
+        count+=1
+        var likes=document.getElementById("likeCount")
+        // <span>0</span>
+        likes.innerText=count
+        likes.style.color="green"
+    })
+
+    // select that element with getElementById
+
+</script>

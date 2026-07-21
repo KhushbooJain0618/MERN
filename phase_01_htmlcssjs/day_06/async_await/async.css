@@ -1,0 +1,28 @@
+
+#container{
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+img{
+    height: 200px;
+    width: 200px;
+}
+#cardContainer{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.card{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    text-align: center;
+}
+button{
+    background-color: green;
+    color: white;
+    padding: 5px;
+}
