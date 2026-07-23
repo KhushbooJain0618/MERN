@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Checker</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .container {
+            background: white;
+            width: 380px;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 32px;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s;
+            margin-bottom: 20px;
+        }
+
+        input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 8px rgba(102, 126, 234, 0.4);
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        #result {
+            margin-top: 25px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Age Checker</h1>
+        <p>Please enter your age to check voting eligibility</p>
+
+        <input type="number" id="ageInput" placeholder="Enter your age">
+
+        <button onclick="checkAge()">Check Age</button>
+
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function checkAge() {
+            const age = document.getElementById("ageInput").value;
+            const result = document.getElementById("result");
+
+            if (age < 0 || age > 150 || age === "") {
+                result.textContent = "Please enter a valid age.";
+                result.style.color = "red";
+            } else if (age < 18) {
+                result.textContent = "You are not Eligible to vote.";
+                result.style.color = "orange";
+            } else {
+                result.textContent = "You are Eligible to vote.";
+                result.style.color = "green";
+            }
+        }
+    </script>
+
+</body>
+</html>
