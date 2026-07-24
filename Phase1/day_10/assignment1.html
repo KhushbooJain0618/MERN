@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To-Do List Manager</title>
+
+<style>
+body{
+    font-family:Arial, sans-serif;
+    background:#f2f2f2;
+    display:flex;
+    justify-content:center;
+    margin-top:40px;
+}
+
+.container{
+    background:white;
+    width:400px;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px gray;
+}
+
+h2{
+    text-align:center;
+}
+
+input{
+    width:65%;
+    padding:8px;
+}
+
+button{
+    padding:8px 12px;
+    margin:5px;
+    cursor:pointer;
+}
+
+ul{
+    list-style:none;
+    padding:0;
+}
+
+li{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#eee;
+    margin:8px 0;
+    padding:8px;
+    border-radius:5px;
+}
+
+.completed{
+    text-decoration:line-through;
+    color:gray;
+}
+
+.task{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h2>To-Do List</h2>
+
+<input type="text" id="taskInput" placeholder="Enter task">
+<button onclick="addTask()">Add</button>
+<button onclick="removeLastTask()">Remove Last Task</button>
+
+<p id="counter">0 Tasks Remaining</p>
+
+<ul id="taskList"></ul>
+</div>
+
+<script>
+let tasks=[];
+
+function addTask(){
+    let input=document.getElementById("taskInput");
+    let task=input.value.trim();
+
+    if(task===""){
+        alert("Enter a task");
+        return;
+    }
+
+    tasks.push({
+        name:task,
+        completed:false
+    });
+
+    input.value="";
+    displayTasks();
+}
+
+function deleteTask(index){
+    tasks.splice(index,1);
+    displayTasks();
+}
+
+function removeLastTask(){
+    if(tasks.length>0){
+        tasks.pop();
+        displayTasks();
+    }
+}
+
+function toggleTask(index){
+    tasks[index].completed=!tasks[index].completed;
+    displayTasks();
+}
+
+function displayTasks(){
+
+    let list=document.getElementById("taskList");
+    list.innerHTML="";
+
+    tasks.forEach(function(task,index){
+
+        let li=document.createElement("li");
+
+        let left=document.createElement("div");
+        left.className="task";
+
+        let check=document.createElement("input");
+        check.type="checkbox";
+        check.checked=task.completed;
+        check.onchange=function(){
+            toggleTask(index);
+        };
+
+        let span=document.createElement("span");
+        span.innerText=task.name;
+
+        if(task.completed){
+            span.classList.add("completed");
+        }
+
+        left.appendChild(check);
+        left.appendChild(span);
+
+        let del=document.createElement("button");
+        del.innerText="Delete";
+        del.onclick=function(){
+            deleteTask(index);
+        };
+
+        li.appendChild(left);
+        li.appendChild(del);
+
+        list.appendChild(li);
+    });
+
+    let remaining=tasks.filter(function(task){
+        return !task.completed;
+    }).length;
+
+    document.getElementById("counter").innerText=
+    remaining+" Tasks Remaining";
+}
+</script>
+
+</body>
+</html>

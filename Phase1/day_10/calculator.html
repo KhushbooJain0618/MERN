@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Calculator</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#f2f2f2;
+}
+.container{
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+    text-align:center;
+    width:320px;
+}
+input{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    font-size:16px;
+}
+button{
+    padding:10px 15px;
+    margin:5px;
+    cursor:pointer;
+}
+#result{
+    margin-top:20px;
+    font-size:20px;
+    font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Simple Calculator</h2>
+
+    <input type="number" id="num1" placeholder="Enter First Number">
+    <input type="number" id="num2" placeholder="Enter Second Number">
+
+    <button onclick="add()">Add</button>
+    <button onclick="subtract()">Subtract</button>
+    <button onclick="multiply()">Multiply</button>
+    <button onclick="divide()">Divide</button>
+    <button onclick="clearAll()">Clear</button>
+
+    <p id="result">Result:</p>
+</div>
+
+<script>
+let result=document.getElementById("result");
+
+function add(){
+    let a=Number(document.getElementById("num1").value);
+    let b=Number(document.getElementById("num2").value);
+    result.textContent="Result: "+(a+b);
+}
+
+function subtract(){
+    let a=Number(document.getElementById("num1").value);
+    let b=Number(document.getElementById("num2").value);
+    result.textContent="Result: "+(a-b);
+}
+
+function multiply(){
+    let a=Number(document.getElementById("num1").value);
+    let b=Number(document.getElementById("num2").value);
+    result.textContent="Result: "+(a*b);
+}
+
+function divide(){
+    let a=Number(document.getElementById("num1").value);
+    let b=Number(document.getElementById("num2").value);
+    if(b===0){
+        result.textContent="Cannot divide by zero";
+    }
+    else{
+        result.textContent="Result: "+(a/b);
+    }
+}
+
+function clearAll(){
+    document.getElementById("num1").value="";
+    document.getElementById("num2").value="";
+    result.textContent="Result:";
+}
+</script>
+
+</body>
+</html>

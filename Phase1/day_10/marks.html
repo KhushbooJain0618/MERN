@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marks Calculator</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#f2f2f2;
+}
+.container{
+    background:#fff;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,.15);
+    text-align:center;
+    width:320px;
+}
+h2{
+    margin-bottom:20px;
+}
+input{
+    width:100%;
+    padding:10px;
+    font-size:16px;
+    margin-bottom:15px;
+}
+button{
+    width:100%;
+    padding:10px;
+    font-size:16px;
+    cursor:pointer;
+}
+#result{
+    margin-top:20px;
+    font-size:20px;
+    font-weight:bold;
+}
+.aplus{
+    color:#0a8f08;
+}
+.a{
+    color:#2b6cff;
+}
+.b{
+    color:#ff9800;
+}
+.c{
+    color:#8a2be2;
+}
+.fail{
+    color:#e60000;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Marks Calculator</h2>
+    <input type="number" id="marks" placeholder="Enter Marks">
+    <button onclick="checkGrade()">Check Grade</button>
+    <p id="result"></p>
+</div>
+
+<script>
+function checkGrade(){
+    let marks=Number(document.getElementById("marks").value);
+    let result=document.getElementById("result");
+
+    if(marks<0 || marks>100){
+        result.className="fail";
+        result.textContent="Enter marks between 0 and 100";
+    }
+    else if(marks>=90){
+        result.className="aplus";
+        result.textContent="Grade: A+";
+    }
+    else if(marks>=75){
+        result.className="a";
+        result.textContent="Grade: A";
+    }
+    else if(marks>=60){
+        result.className="b";
+        result.textContent="Grade: B";
+    }
+    else if(marks>=40){
+        result.className="c";
+        result.textContent="Grade: C";
+    }
+    else{
+        result.className="fail";
+        result.textContent="FAIL";
+    }
+}
+</script>
+
+</body>
+</html>
